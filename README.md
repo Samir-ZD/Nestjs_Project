@@ -8,7 +8,8 @@ Nestjs CRUD with Authentication.
 <li>Products CRUD.</li>
 <li>Database Relations.</li>
 <li>Login + Signup.</li>
-<li>Auth</li>
+<li>Auth.</li>
+<li>Validation + Pipes</li>
 </ul>
 
 ## Stack:
