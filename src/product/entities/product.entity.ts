@@ -3,8 +3,7 @@ import {
   Column,
   Entity,
   Index,
-  JoinTable,
-  ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -25,7 +24,6 @@ export class Product {
   // @Column({ default: new Date() })
   // product_createdAt: Date;
 
-  @ManyToMany(() => User, (user) => user.products, { nullable: false })
-  @JoinTable({ name: 'user__product' })
-  users: User[];
+  @ManyToOne(() => User, (user) => user.products)
+  user: User;
 }

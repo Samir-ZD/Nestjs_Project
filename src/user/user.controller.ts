@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -42,5 +43,18 @@ export class UserController {
   @Delete('/:userId')
   deleteUser(@Param('userId', ParseIntPipe) userId: number) {
     return this.userService.delete(userId);
+  }
+
+  @Put('/:userId/products/:productId')
+  addProduct(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('productId', ParseIntPipe) productId: number,
+  ) {
+    return this.userService.addProduct(userId, productId);
+  }
+
+  @Get('/:userId/products')
+  getProducts(@Param('userId', ParseIntPipe) userId: number) {
+    return this.userService.getProducts(userId);
   }
 }

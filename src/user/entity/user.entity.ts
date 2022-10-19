@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Product } from 'src/product/entities/product.entity';
-import { Column, CreateDateColumn, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Users' })
 export class User {
@@ -23,10 +23,8 @@ export class User {
   // @CreateDateColumn()
   // createdAt : string
 
-  @ManyToMany(() => Product, (product) => product.users, { nullable: false })
-  @JoinTable({ name: 'user__product' })
+  @OneToMany(type => Product, product => product.user) // note: we will create author property in the Photo class below
   products: Product[];
-
 
 
   
