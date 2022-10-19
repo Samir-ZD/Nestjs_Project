@@ -13,7 +13,11 @@ export class ProductService {
   ) {}
 
   create(createProductDto: CreateProductDto) {
-    return this.productRepository.save(createProductDto);
+    try {
+      return this.productRepository.save(createProductDto);
+    } catch (err) {
+      return;
+    }
   }
 
   findAll(): Promise<Product[]> {

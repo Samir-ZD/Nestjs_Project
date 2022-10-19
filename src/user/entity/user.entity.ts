@@ -25,8 +25,5 @@ export class User {
 
   @OneToMany(type => Product, product => product.user) // note: we will create author property in the Photo class below
   products: Product[];
-
-
-  
 }
 

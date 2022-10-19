@@ -8,7 +8,7 @@ Nestjs CRUD with Authentication.
 <li>Products CRUD.</li>
 <li>Database Relations.</li>
 <li>Login + Signup.</li>
-<li>Auth.</li>
+<li>Auth, Encryption</li>
 <li>Validation + Pipes</li>
 </ul>
 
@@ -22,4 +22,9 @@ Nestjs CRUD with Authentication.
 </ul>
 
 ## Sources:
-Will Be Added Through Comming Commits.
+[Nestjs Documentation](https://docs.nestjs.com/)
+[FreeCodeCamp NestJs](https://www.youtube.com/watch?v=GHTA143_b-s)
+[NestJs with typeORM tutorial](https://www.youtube.com/watch?v=i1-5eahxrgo)
+[TypeORM version releases !important](https://github.com/typeorm/typeorm/releases/tag/0.3.0)
+[Http Requests](https://learning.postman.com/docs/sending-requests/authorization/#bearer-token)
+

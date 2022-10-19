@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from 'src/product/entities/product.entity';
+import { encodePassword } from 'src/utils/bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -16,15 +17,32 @@ export class UserService {
   ) {}
 
   get(): Promise<User[]> {
-    return this.userRepository.find();
+    try {
+      return this.userRepository.find();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   create(createUserDto: CreateUserDto) {
-    return this.userRepository.save(createUserDto);
+    try {
+      if (createUserDto) {
+        const password = encodePassword(createUserDto.password);
+        const newUser = this.userRepository.create({
+          ...createUserDto,
+          password,
+        });
+        return this.userRepository.save(newUser);
+      }
+      return 'failed';
+    } catch (err) {
+      console.log('failed');
+    }
   }
 
   update(updateUserDto: UpdateUserDto, userId: number) {
-    return this.userRepository.update(userId, updateUserDto);
+    const password = encodePassword(updateUserDto.password);
+    return this.userRepository.update(userId, { ...updateUserDto, password });
   }
 
   show(userId: number) {
