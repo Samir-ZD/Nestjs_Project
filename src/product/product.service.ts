@@ -19,8 +19,9 @@ export class ProductService {
   findAll(): Promise<Product[]> {
     return this.productRepository.find();
   }
-  findOne(id: number) {
-    return this.productRepository.findOne({ where: { id } });
+
+  show(productId: number) {
+    return this.productRepository.findOne({ where: { productId } });
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {

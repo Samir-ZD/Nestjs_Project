@@ -1,9 +1,17 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/user/entity/user.entity';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity({ name: 'Product' })
+@Entity({ name: 'Products' })
 export class Product {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn({ name: 'product_id' })
+  productId: number;
 
   @Index({ unique: true })
   @Column({ default: 'name' })
@@ -11,4 +19,13 @@ export class Product {
 
   @Column({ default: 'email' })
   desc: string;
+
+  @Column()
+  price: number;
+  // @Column({ default: new Date() })
+  // product_createdAt: Date;
+
+  @ManyToMany(() => User, (user) => user.products, { nullable: false })
+  @JoinTable({ name: 'user__product' })
+  users: User[];
 }

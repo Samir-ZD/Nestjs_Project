@@ -26,17 +26,21 @@ export class ProductController {
     return this.productService.findAll();
   }
 
-  @Get('/:id')
-  getUser(@Param('id', ParseIntPipe) id: number) {
-    return this.productService.findOne(id);
+  @Get('/:productId')
+  findOne(@Param('productId', ParseIntPipe) productId: number) {
+    return this.productService.show(productId);
   }
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+
+  @Patch('/:productId')
+  update(
+    @Param('productId') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
     return this.productService.update(+id, updateProductDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete('/:productId')
+  remove(@Param('productId') id: string) {
     return this.productService.remove(+id);
   }
 }
